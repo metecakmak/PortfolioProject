@@ -6,7 +6,7 @@ WHERE location like '%TURKEY%'
 ORDER BY 1,2
 
 
--- TOTAL CASES VS. POPULAT›ON 
+-- TOTAL CASES VS. POPULAT√ùON 
 SELECT location, date, total_cases, population,
 CONVERT(FLOAT, total_cases) / CONVERT(float, population) * 100 AS PercentPopulationInfected
 FROM dbo.DEATHS
@@ -16,7 +16,7 @@ ORDER BY 1,2
 
 -- Looking at Countries Highest Inflection Rate compared to Population
 SELECT location, population, MAX(convert(float,total_cases)) AS Highest_Infection_Count, 
-MAX(CONVERT(float, total_cases)) / MAX(CONVERT(float,population)) * 100	AS Percent_Population_›nfected
+MAX(CONVERT(float, total_cases)) / MAX(CONVERT(float,population)) * 100	AS Percent_Population_√ùnfected
 FROM dbo.DEATHS
 GROUP BY location, population
 ORDER BY 4 desc
@@ -47,11 +47,11 @@ where continent is not null
 order by 1
 
 
--- TOTAL POPULAT›ON VS VACC›NAT›ONS
+-- TOTAL POPULAT√ùON VS VACC√ùNAT√ùONS
 SELECT D.continent, D.location, D.date , population, V.new_vaccinations, 
 SUM(cast(V.new_vaccinations as float)) OVER (Partition by D.location order by D.location, D.Date) AS Rolling_People_Vaccinated
 FROM dbo.DEATHS AS D
-JOIN dbo.VACC›NAT›ONS AS V ON D.location = V.location and D.date = V.date
+JOIN dbo.VACC√ùNAT√ùONS AS V ON D.location = V.location and D.date = V.date
 where D.continent is not null
 ORDER BY 2,3
 
@@ -63,7 +63,7 @@ SELECT D.continent, D.location, D.date , population, V.new_vaccinations,
 SUM(cast(V.new_vaccinations as float)) OVER (Partition by D.location order by D.location, D.Date) AS Rolling_People_Vaccinated
 
 FROM dbo.DEATHS AS D
-JOIN dbo.VACC›NAT›ONS AS V ON D.location = V.location and D.date = V.date
+JOIN dbo.VACC√ùNAT√ùONS AS V ON D.location = V.location and D.date = V.date
 where D.continent is not null
 )
 
@@ -90,7 +90,7 @@ SELECT D.continent, D.location, D.date , population, V.new_vaccinations,
 SUM(cast(V.new_vaccinations as float)) OVER (Partition by D.location order by D.location, D.Date) AS Rolling_People_Vaccinated
 
 FROM dbo.DEATHS AS D
-JOIN dbo.VACC›NAT›ONS AS V ON D.location = V.location and D.date = V.date
+JOIN dbo.VACC√ùNAT√ùONS AS V ON D.location = V.location and D.date = V.date
 --where D.continent is not null
 
 SELECT *, (Rolling_People_Vaccinated) / (population) * 100
@@ -103,7 +103,7 @@ Create View PercentPopulatinVaccinated AS
 SELECT D.continent, D.location, D.date , population, V.new_vaccinations, 
 SUM(cast(V.new_vaccinations as float)) OVER (Partition by D.location order by D.location, D.Date) AS Rolling_People_Vaccinated
 FROM dbo.DEATHS AS D
-JOIN dbo.VACC›NAT›ONS AS V ON D.location = V.location and D.date = V.date
+JOIN dbo.VACC√ùNAT√ùONS AS V ON D.location = V.location and D.date = V.date
 where D.continent is not null
 
 
